@@ -15,8 +15,8 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		throw error(404, `Error: ${err.message}`);
 	}
 
-	const locale = location?.country?.languages[0] || 'en-GB';
-	const timezone = location?.country?.timezone?.code || 'Europe/London';
+	const locale = location?.country?.languages[0] || 'en-US';
+	const timezone = location?.country?.timezone?.code || 'America/New_York';
 
 	// Generate a formatted time string
 	const now = new Date();
