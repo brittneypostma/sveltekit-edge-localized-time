@@ -1,8 +1,7 @@
 import type { RequestEvent } from '@sveltejs/kit';
-// import { Context } from 'https://edge.netlify.com';
+import { Context } from 'https://edge.netlify.com';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-// import iplocation from 'https://cdn.skypack.dev/iplocation';
 
 export const load: PageServerLoad = async (event: RequestEvent) => {
 	const context: Context = event.platform?.context;
@@ -10,7 +9,6 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 	let location = event.platform?.context?.geo?.ip;
 	let locationLabel;
 	try {
-		// location = await iplocation(context.ip);
 		locationLabel = `${context.geo.city}, ${context.geo.country.name}`;
 	} catch (err) {
 		location = null;
