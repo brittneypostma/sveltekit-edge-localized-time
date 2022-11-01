@@ -5,7 +5,6 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event: RequestEvent) => {
 	const context: Context = event.platform?.context;
-	// determine location and probable locale from the IP address
 	let location = event.platform?.context?.geo?.ip;
 	let locationLabel;
 	try {
