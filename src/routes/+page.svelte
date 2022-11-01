@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	export let data: PageData;
+	const { time, locationLabel } = data;
 </script>
 
-<pre>{JSON.stringify(data.time, null, 2)}</pre>
+<h1>{locationLabel}</h1>
+<time>{time}</time>
 
 <style>
 	pre {

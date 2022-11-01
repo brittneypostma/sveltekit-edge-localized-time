@@ -40,6 +40,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 	// updatedPage = updatedPage.replace(regex_place, locationLabel);
 	// return new Response(updatedPage, response);
 	return {
+		locationLabel,
 		time
 	};
 };
