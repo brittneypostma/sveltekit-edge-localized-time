@@ -26,12 +26,20 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		// Generate a formatted time string
 		const time = new Date().toLocaleString(locale, {
 			timeZone: timezone,
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
 			hour: 'numeric',
 			minute: 'numeric'
 		});
 		console.log(
 			new Date().toLocaleString('id-ID', {
 				timeZone: 'Asia/Jakarta',
+				weekday: 'long',
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric',
 				hour: 'numeric',
 				minute: 'numeric'
 			})
