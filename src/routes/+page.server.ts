@@ -5,19 +5,20 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event: RequestEvent) => {
 	const context: Context = event.platform?.context;
-	console.log(context);
+	// console.log(context);
 	let location;
 	let locationLabel;
 	try {
 		location = context?.ip; // this is not helping
 		const res = await fetch(`https://ipapi.co/${location}/json/`);
-		console.log(res.json());
+		const data = await res.json();
+		console.log(data);
 		const city = context?.geo?.city;
 		const country = context?.geo?.country?.name;
 		locationLabel = `${city}, ${country}`;
 		const locale = context.country?.languages[0] || 'en-GB';
 		const timezone = context.country?.timezone?.code || 'Europe/London'; //  'America/New_York'
-		console.log(location, context.country?.languages[0], location?.country?.timezone?.code);
+		// console.log(location, context.country?.languages[0], location?.country?.timezone?.code);
 
 		// Generate a formatted time string
 		const time = new Date().toLocaleString(locale, {
