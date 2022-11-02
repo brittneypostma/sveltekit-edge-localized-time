@@ -9,7 +9,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 	let location;
 	let locationLabel;
 	try {
-		location = event.platform?.context?.geo?.ip;
+		location = event.platform?.context?.ip;
 		locationLabel = `${context.geo.city}, ${context.geo.country.name}`;
 
 		const locale = location?.country?.languages[0] || 'en-GB';
