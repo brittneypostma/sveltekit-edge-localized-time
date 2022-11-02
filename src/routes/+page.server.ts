@@ -15,9 +15,9 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		throw error(404, `Error: ${err.message}`);
 	}
 
-	const locale = location?.country?.languages[0] || null; // 'en-US'
-	const timezone = location?.country?.timezone?.code || null; // 'America/New_York'
-	console.log(timezone);
+	const locale = location?.country?.languages[0] || 'en-GB';
+	const timezone = location?.country?.timezone?.code || 'Europe/Londom'; //  'America/New_York'
+	console.log(locale, timezone);
 
 	// Generate a formatted time string
 	const time = new Date().toLocaleString(locale, {
@@ -25,6 +25,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		hour: 'numeric',
 		minute: 'numeric'
 	});
+
 	return {
 		locationLabel,
 		time
