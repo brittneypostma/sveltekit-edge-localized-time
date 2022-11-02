@@ -11,14 +11,14 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 	try {
 		location = context?.ip; // this is not helping
 		const res = await fetch(`https://ipapi.co/${location}/json/`);
-		const data = await res.json();
-		console.log({ data }, { context });
+		const ipData = await res.json();
+		// console.log({ ipData }, { context });
 		const city = context?.geo?.city;
 		const country = context?.geo?.country?.name;
 		locationLabel = `${city}, ${country}`;
-		const locale = context.country?.languages[0] || 'en-GB';
-		const timezone = context.country?.timezone?.code || 'Europe/London'; //  'America/New_York'
-		// console.log(location, context.country?.languages[0], location?.country?.timezone?.code);
+		const locale = ipData.country?.languages[0] || 'en-GB';
+		const timezone = ipData.country?.timezone?.code || 'Europe/London'; //  'America/New_York'
+		console.log(location, context.country?.languages[0], location?.country?.timezone?.code);
 
 		// Generate a formatted time string
 		const time = new Date().toLocaleString(locale, {
