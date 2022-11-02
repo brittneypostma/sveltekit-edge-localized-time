@@ -5,6 +5,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event: RequestEvent) => {
 	const context: Context = event.platform?.context;
+	console.log(context);
 	let location;
 	let locationLabel;
 	try {
