@@ -20,7 +20,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		// const locale = ipData.country?.languages[0] || 'en-GB';
 		const locale = `en-${countryCode}`;
 		const timezone = ipData.country?.timezone?.code || 'Europe/London'; //  'America/New_York'
-		// console.log(locale, timezone);
+		console.log(locale, timezone);
 
 		// Generate a formatted time string
 		const time = new Date().toLocaleString(locale, {
