@@ -12,7 +12,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		location = context?.ip; // this is not helping
 		const res = await fetch(`https://ipapi.co/${location}/json/`);
 		const data = await res.json();
-		console.log(data);
+		console.log({ data }, { context });
 		const city = context?.geo?.city;
 		const country = context?.geo?.country?.name;
 		locationLabel = `${city}, ${country}`;
