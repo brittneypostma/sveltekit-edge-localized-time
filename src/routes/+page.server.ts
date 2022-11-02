@@ -17,10 +17,10 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		const country = context?.geo?.country?.name;
 		locationLabel = `${city}, ${country}`;
 		const countryCode = context?.geo?.country?.code;
-		// const locale = ipData.country?.languages[0] || 'en-GB';
-		const locale = `en-${countryCode}`;
-		const timezone = ipData.country?.timezone?.code || 'Europe/London'; //  'America/New_York'
-		console.log(locale, timezone);
+		const locale = ipData.languages[0] || 'en-GB';
+		// const locale = `en-${countryCode}` || 'en-GB';
+		const timezone = ipData.timezone || 'Europe/London'; //  'America/New_York'
+		console.log({ countryCode }, { locale }, { timezone });
 
 		// Generate a formatted time string
 		const time = new Date().toLocaleString(locale, {
