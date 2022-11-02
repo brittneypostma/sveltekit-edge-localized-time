@@ -15,18 +15,16 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		throw error(404, `Error: ${err.message}`);
 	}
 
-	const locale = location?.country?.languages[0] || 'en-US';
+	const locale = location?.country?.languages[0] || null; // 'en-US'
 	const timezone = location?.country?.timezone?.code || null; // 'America/New_York'
 	console.log(timezone);
 
 	// Generate a formatted time string
-	const now = new Date();
-	const time = now.toLocaleString(locale, {
+	const time = new Date().toLocaleString(locale, {
 		timeZone: timezone,
 		hour: 'numeric',
 		minute: 'numeric'
 	});
-
 	return {
 		locationLabel,
 		time
