@@ -16,7 +16,8 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 	}
 
 	const locale = location?.country?.languages[0] || 'en-US';
-	const timezone = location?.country?.timezone?.code || 'America/New_York';
+	const timezone = location?.country?.timezone?.code || null; // 'America/New_York'
+	console.log(timezone);
 
 	// Generate a formatted time string
 	const now = new Date();
