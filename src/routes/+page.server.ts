@@ -18,7 +18,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		locationLabel = `${city}, ${country}`;
 		const locale = ipData.country?.languages[0] || 'en-GB';
 		const timezone = ipData.country?.timezone?.code || 'Europe/London'; //  'America/New_York'
-		console.log(location, context.country?.languages[0], location?.country?.timezone?.code);
+		console.log(locale, timezone);
 
 		// Generate a formatted time string
 		const time = new Date().toLocaleString(locale, {
