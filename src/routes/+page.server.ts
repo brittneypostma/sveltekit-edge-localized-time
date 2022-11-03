@@ -18,12 +18,13 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		const country = context?.geo?.country?.name;
 		locationLabel = `${city}, ${country}`;
 		const countryCode = context?.geo?.country?.code;
-		const locale = ipData.languages.split(',')[0] || 'id-ID';
+		const options = Intl.DateTimeFormat().resolvedOptions();
+		const locale = options.locale;
+		// const locale = ipData.languages.split(',')[0] || 'id-ID';
 		// const locale = `en-${countryCode}` || 'en-GB';
 		const timezone = ipData.timezone || 'Asia/Jakarta'; //  'America/New_York'
 		// date.getTimezoneOffset();
-		const options = Intl.DateTimeFormat().resolvedOptions();
-		const intlTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		const intlTimezone = options.timeZone;
 		console.log({ options }, { intlTimezone }, { countryCode }, { locale }, { timezone });
 
 		// Generate a formatted time string
