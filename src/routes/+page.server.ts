@@ -21,7 +21,10 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		const locale = ipData.languages.split(',')[0] || 'id-ID';
 		// const locale = `en-${countryCode}` || 'en-GB';
 		const timezone = ipData.timezone || 'Asia/Jakarta'; //  'America/New_York'
-		console.log({ countryCode }, { locale }, { timezone });
+		// date.getTimezoneOffset();
+		const options = Intl.DateTimeFormat().resolvedOptions();
+		const intlTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		console.log({ options }, { intlTimezone }, { countryCode }, { locale }, { timezone });
 
 		// Generate a formatted time string
 		const time = new Date().toLocaleString(locale, {
@@ -33,17 +36,6 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 			hour: 'numeric',
 			minute: 'numeric'
 		});
-		console.log(
-			new Date().toLocaleString('id-ID', {
-				timeZone: 'Asia/Jakarta',
-				weekday: 'long',
-				year: 'numeric',
-				month: 'long',
-				day: 'numeric',
-				hour: 'numeric',
-				minute: 'numeric'
-			})
-		);
 		return {
 			locationLabel,
 			time
