@@ -19,7 +19,14 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		const timezone = context?.geo?.timezone || 'Asia/Jakarta'; //  'America/New_York'
 		// date.getTimezoneOffset();
 		const intlTimezone = options.timeZone;
-		console.log({ options }, { intlTimezone }, { countryCode }, { locale }, { timezone });
+		console.log(
+			{ context },
+			{ options },
+			{ intlTimezone },
+			{ countryCode },
+			{ locale },
+			{ timezone }
+		);
 
 		// Generate a formatted time string
 		const time = new Date().toLocaleString(locale, {
