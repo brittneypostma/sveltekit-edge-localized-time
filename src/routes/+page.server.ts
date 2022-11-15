@@ -5,14 +5,8 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event: RequestEvent) => {
 	const context: Context = event.platform?.context;
-	let location;
 	let locationLabel;
 	try {
-		// get ip and use it to hit ipapi
-		location = context?.ip;
-		const res = await fetch(`https://ipapi.co/${location}/json/`);
-		const ipData = await res.json();
-		console.log({ ipData }, { context });
 		// break out individual pieces
 		const city = context?.geo?.city;
 		const country = context?.geo?.country?.name;
@@ -22,7 +16,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		const locale = options.locale;
 		// const locale = ipData.languages.split(',')[0] || 'id-ID';
 		// const locale = `en-${countryCode}` || 'en-GB';
-		const timezone = ipData.timezone || 'Asia/Jakarta'; //  'America/New_York'
+		const timezone = context?.geo?.timezone || 'Asia/Jakarta'; //  'America/New_York'
 		// date.getTimezoneOffset();
 		const intlTimezone = options.timeZone;
 		console.log({ options }, { intlTimezone }, { countryCode }, { locale }, { timezone });
@@ -41,8 +35,8 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 			locationLabel,
 			time
 		};
-	} catch (err) {
-		location = null;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (err: any) {
 		locationLabel = undefined;
 		throw error(404, `Error: ${err.message}`);
 	}
